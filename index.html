@@ -1,0 +1,116 @@
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>Let's make svg</title>
+      <link rel="stylesheet" href="https://mapzen.com/js/mapzen.css">
+      <link rel="stylesheet" href="https://cdn.rawgit.com/heyman/leaflet-areaselect/da890569/src/leaflet-areaselect.css">
+      <link rel="stylesheet" href="https://mapzen.com/common/styleguide/styles/styleguide.css">
+      <link rel="stylesheet" href="./stylesheets/style.css">
+   </head>
+   <body style="">
+      <div class="container">
+         <h1>Let's make map</h1>
+         <div class="row">
+            <div class="col-md-8">
+               <div id="map" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="position: relative;">
+                  <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);">
+                     <div class="leaflet-pane leaflet-tile-pane">
+                        <div class="leaflet-layer " style="z-index: 1; background-color: transparent; opacity: 1; transform: translate3d(0px, 0px, 0px);">
+                           <div class="leaflet-tile-container leaflet-zoom-animated" style="transform: translate3d(0px, 0px, 0px) scale(1);">
+                              <div data-tile-key="4823/6159/14" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(73px, -1px, 0px); opacity: 1;"></div>
+                              <div data-tile-key="4824/6159/14" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(329px, -1px, 0px); opacity: 1;"></div>
+                              <div data-tile-key="4823/6160/14" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(73px, 255px, 0px); opacity: 1;"></div>
+                              <div data-tile-key="4824/6160/14" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(329px, 255px, 0px); opacity: 1;"></div>
+                              <div data-tile-key="4822/6159/14" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-183px, -1px, 0px); opacity: 1;"></div>
+                              <div data-tile-key="4825/6159/14" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(585px, -1px, 0px); opacity: 1;"></div>
+                              <div data-tile-key="4822/6160/14" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-183px, 255px, 0px); opacity: 1;"></div>
+                              <div data-tile-key="4825/6160/14" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(585px, 255px, 0px); opacity: 1;"></div>
+                           </div>
+                           <canvas width="610" height="500" style="position: absolute; top: 0px; left: 0px; background-color: rgb(221, 221, 221); width: 610px; height: 500px;"></canvas>
+                        </div>
+                     </div>
+                     <div class="leaflet-pane leaflet-shadow-pane"></div>
+                     <div class="leaflet-pane leaflet-overlay-pane"></div>
+                     <div class="leaflet-pane leaflet-marker-pane"></div>
+                     <div class="leaflet-pane leaflet-tooltip-pane"></div>
+                     <div class="leaflet-pane leaflet-popup-pane"></div>
+                     <div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(1.23492e+06px, 1.57696e+06px, 0px) scale(8192);"></div>
+                  </div>
+                  <div class="leaflet-control-container">
+                     <div class="leaflet-top leaflet-left">
+                        <div class="leaflet-pelias-control leaflet-bar leaflet-control">
+                           <input class="leaflet-pelias-input" spellcheck="false" title="Search" placeholder="Search"><a class="leaflet-pelias-search-icon"></a>
+                           <div class="leaflet-pelias-close leaflet-pelias-hidden" title="Reset">×</div>
+                           <div class="leaflet-pelias-results leaflet-bar"></div>
+                        </div>
+                     </div>
+                     <div class="leaflet-top leaflet-right"></div>
+                     <div class="leaflet-bottom leaflet-left"></div>
+                     <div class="leaflet-bottom leaflet-right">
+                        <div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in">+</a><a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out">-</a></div>
+                        <div class="leaflet-control-attribution leaflet-control">© <a href="https://www.mapzen.com/rights">Mapzen</a>,  <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>, and <a href="https://www.mapzen.com/rights/#services-and-data-sources">others</a> | <a href="http://leafletjs.com/">Leaflet</a></div>
+                     </div>
+                     <div class="leaflet-areaselect-container">
+                        <div class="leaflet-areaselect-shade" style="width: 610px; height: 125px; top: 0px; left: 0px;"></div>
+                        <div class="leaflet-areaselect-shade" style="width: 610px; height: 125px; left: 0px; bottom: 0px;"></div>
+                        <div class="leaflet-areaselect-shade" style="width: 205px; height: 250px; top: 125px; left: 0px;"></div>
+                        <div class="leaflet-areaselect-shade" style="width: 205px; height: 250px; top: 125px; right: 0px;"></div>
+                        <div class="leaflet-areaselect-handle" style="top: 118px; left: 198px;"></div>
+                        <div class="leaflet-areaselect-handle" style="left: 198px; bottom: 118px;"></div>
+                        <div class="leaflet-areaselect-handle" style="top: 118px; right: 198px;"></div>
+                        <div class="leaflet-areaselect-handle" style="bottom: 118px; right: 198px;"></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <form>
+                  <fieldset class="form-group"><label for="apikey">Vector Tiles API Key</label><input id="api-key" type="text" name="apikey" placeholder="vector-tiles-xxxx" class="form-control"></fieldset>
+                  <div id="api-key-warning" class="alert alert-warning api-warning"> You need Mapzen API Key to proceed.</div>
+                  <fieldset class="form-group"><label for="startLat">startLat</label><input id="startLat" type="text" name="startLat" placeholder="start latitude" class="form-control"></fieldset>
+                  <fieldset class="form-group"><label for="startLon">startLongitude</label><input id="startLon" type="text" name="startLon" placeholder="start longitude" class="form-control"></fieldset>
+                  <fieldset class="form-group"><label for="endLat">endLatitude</label><input id="endLat" type="text" name="endLat" placeholder="end latitude" class="form-control"></fieldset>
+                  <fieldset class="form-group"><label for="endLon">endLongitude</label><input id="endLon" type="text" name="endLon" placeholder="end longitude" class="form-control"></fieldset>
+                  <div class="form-group"><input type="checkbox" id="inkscape" name="inkscape" checked=""><label for="inkscape">Is this for Inkscape?</label></div>
+                  <div class="form-group">
+                     <select id="zoomLevel" name="zoomLevel">
+                        <option value="16">16</option>
+                        <option value="15">15</option>
+                        <option value="14">14</option>
+                        <option value="13">13</option>
+                        <option selected="selected" value="12">12</option>
+                        <option value="11">11</option>
+                        <option value="10">10</option>
+                        <option value="9">9</option>
+                        <option value="8">8</option>
+                        <option value="7">7</option>
+                        <option value="6">6</option>
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                     </select>
+                  </div>
+                  <div class="form-group"><input type="checkbox" id="boundaries" name="boundaries" checked=""><label for="boundaries">boundaries</label></div>
+                  <div class="form-group"><input type="checkbox" id="earth" name="earth"><label for="earth">earth</label></div>
+                  <div class="form-group"><input type="checkbox" id="landuse" name="landuse"><label for="landuse">landuse</label></div>
+                  <div class="form-group"><input type="checkbox" id="places" name="places"><label for="places">places</label></div>
+                  <div class="form-group"><input type="checkbox" id="roads" name="roads"><label for="roads">roads</label></div>
+                  <div class="form-group"><input type="checkbox" id="transit" name="transit"><label for="transit">transit</label></div>
+                  <div class="form-group"><input type="checkbox" id="water" name="water" checked=""><label for="water">water</label></div>
+                  <input type="button" id="requestTiles" value ="request" name="coord-submit" class="btn btn-primary btn-mapzen">  </input>
+               </form>
+               <div id="status">
+                  <div class="loading-spinner-01"></div> <span> baking svg </span>
+               </div>
+               <a id="downloadSVG">Download SVG</a>
+            </div>
+         </div>
+
+      </div>
+      <script src="https://mapzen.com/js/mapzen.js"></script>
+      <script src="https://cdn.rawgit.com/heyman/leaflet-areaselect/da890569/src/leaflet-areaselect.js"></script>
+      <script src="./javascripts/bundle.js"></script>
+   </body>
+</html>
