@@ -34,17 +34,14 @@ var warningBox = document.getElementById('api-key-warning');
 var statusBox = document.getElementById('status');
 
 requestTileButton.addEventListener('click', function (e) {
-
-  warningBox.style.display = 'none';
-  statusBox.style.display = 'block';
-  requestTileButton.disabled = true;
   if (document.getElementById("api-key").value) {
-
+    warningBox.style.display = 'none';
+    statusBox.style.display = 'block';
+    requestTileButton.disabled = true;
     returnSVG().then(function(result) {
       requestTileButton.disabled = false;
       statusBox.style.display = 'none';
     });
-
   } else {
     warningBox.style.display = 'block';
   }
