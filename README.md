@@ -1,0 +1,1 @@
+This is the serverless version of [SVG Exporter](https://github.com/hanbyul-here/svg-exporter).
