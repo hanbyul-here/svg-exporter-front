@@ -1,5 +1,5 @@
 import {lat2tile, lon2tile, tile2Lon, tile2Lat} from './MapSpells';
-import DataLayer from './DataLayer';
+const DataLayer = require('./DataLayer');
 
 var getTileSpec = function (_lat1, _lat2, _lon1, _lon2, _zoom) {
   var _startTile = {};
@@ -45,11 +45,10 @@ var getTileSpec = function (_lat1, _lat2, _lon1, _lon2, _zoom) {
   }
 }
 
-
 var getTileNumberToFetch = function (startTile, endTile) {
-  const tilesToFetch = [];
+  let tilesToFetch = [];
   for(let j = startTile.lat; j <= endTile.lat; j++) {
-    const coords = [];
+    let coords = [];
     for(let i = startTile.lon; i <= endTile.lon; i++) {
       coords.push({
         lat: j,
@@ -64,11 +63,16 @@ var getTileNumberToFetch = function (startTile, endTile) {
 var setupJson = function (dKinds) {
   var formattedJson = {};
   var dataKind = dKinds.join(',');
-
   for (var i = 0; i < dKinds.length; i++) {
-    // this is sublayer for each data layer
-    if (DataLayer[dKinds[i]]) formattedJson[dKinds[i]] = DataLayer[dKinds[i]];
-    else formattedJson[dKinds[i]]  = DataLayer['etc'];
+    var layerName = dKinds[i];
+    if (DataLayer[layerName]) {
+      formattedJson[layerName] = {};
+      for (var j = 0, k = DataLayer[layerName].length; j < k; j++) {
+        formattedJson[layerName][DataLayer[layerName][j]] = {
+          features: []
+        };
+      }
+    }
   }
   return formattedJson;
 }

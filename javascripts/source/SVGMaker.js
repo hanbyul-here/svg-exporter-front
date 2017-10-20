@@ -4,9 +4,13 @@ import d3 from 'd3';
 
 import { getTileSpec, getTileNumberToFetch, setupJson, getURL } from './TileUtil';
 
-const layers = ['boundaries','earth', 'landuse', 'places', 'roads', 'water'];
-let requestedTileSpec;
+const DataLayer = require('./DataLayer');
+
+const layers = Object.keys(DataLayer);
+
 let conf;
+let requestedTileSpec;
+
 let dKinds;
 let tilesToFetch
 
@@ -16,13 +20,10 @@ const getTiles = function () {
   conf = {
     key: document.getElementById("api-key").value,
     inkscape: document.getElementById('inkscape').checked,
-    delayTime: 200,
+    delayTime: 500,
     tileWidth: 100,
     outputLocation: 'svgmap'
-  }
-
-  // res.send(requestedTileSpec.startTile.lat + ' ' + requestedTileSpec.startTile.lon + 'request submitted, waiting for a file to be written')
-
+  };
 
   dKinds = [];
   for (let item of layers) {
@@ -35,9 +36,8 @@ const getTiles = function () {
   console.log('Expected amount of time : ' + tilesToFetch[0].length * tilesToFetch.length * conf.delayTime/1000 + ' second');
 
   console.log('111');
-  var jsonArray = [];
-
   let tileUrlsToFetch = [];
+  let jsonArray = [];
   for (let i = tilesToFetch.length-1; i >= 0; i--) {
     for (let j = tilesToFetch[0].length-1; j >= 0; j--) {
       tileUrlsToFetch.push(getURL(tilesToFetch[i][j].lon, tilesToFetch[i][j].lat, requestedTileSpec.zoom, conf.key));
@@ -46,7 +46,6 @@ const getTiles = function () {
 
   const getEachTile = (url) =>
     new Promise((resolve, reject) => {
-      console.log(url);
       const xhr = new XMLHttpRequest();
       xhr.open("GET", url);
       xhr.onload = () => resolve(JSON.parse(xhr.responseText));
@@ -69,17 +68,32 @@ return tileUrlsToFetch.reduce(function(promise, item, index, array) {
 }
 
 
+function getTrimmedObj (obj) {
+  var newOBJ = {};
+  for(var key in obj) {
+    newOBJ[key] = {}
+    for(var subKey in obj[key]) {
+      if (obj[key][subKey].features.length > 0) {
+        newOBJ[key][subKey] = obj[key][subKey];
+      }
+    }
+  }
+  return newOBJ;
+}
+
+
+
 function bakeJson(resultArray) {
-console.log('2222');
-return new Promise( function(resolve, reject,) {
-  var geojsonToReform = setupJson(dKinds);
-  // response geojson array
-  for (let result of resultArray) {
-    // inside of one object
-    for (let response in result) {
-      // if the property is one of dataKinds that user selected
-      if (dKinds.indexOf(response) > -1) {
-        let responseResult = result[response];
+  console.log('2222');
+  return new Promise( function(resolve, reject,) {
+    var geojsonToReform = setupJson(dKinds);
+    // response geojson array
+    for (let result of resultArray) {
+      // inside of one object
+      for (let response in result) {
+        // if the property is one of dataKinds that user selected
+        if (dKinds.indexOf(response) > -1) {
+          let responseResult = result[response];
           for (let feature of responseResult.features) {
             var dataKindTitle = feature.properties.kind;
             if(geojsonToReform[response].hasOwnProperty(dataKindTitle)) {
@@ -91,7 +105,8 @@ return new Promise( function(resolve, reject,) {
         }
       }
     }
-    resolve(geojsonToReform);
+    var trimmedObj = getTrimmedObj(geojsonToReform);
+    resolve(trimmedObj);
   })
 }
 
@@ -120,13 +135,13 @@ function writeSVGFile(reformedJson) {
 
         var previewPath = d3.geo.path().projection(previewProjection);
 
-        for (let dataK in reformedJson) {
-          let oneDataKind = reformedJson[dataK];
+        for (const dataK in reformedJson) {
+          const oneDataKind = reformedJson[dataK];
           let g = svg.append('g')
           g.attr('id',dataK)
 
-          for(let subKinds in oneDataKind) {
-            let tempSubK = oneDataKind[subKinds]
+          for(const subKinds in oneDataKind) {
+            const tempSubK = oneDataKind[subKinds]
             let subG = g.append('g')
             if (conf.inkscape) {
               subG.attr('id',subKinds)
@@ -134,8 +149,8 @@ function writeSVGFile(reformedJson) {
                   .attr(':inkscape:label', dataK+subKinds+'layer');
               }
             subG.attr('id',subKinds)
-            for(let f in tempSubK.features) {
-              let geoFeature = tempSubK.features[f]
+            for(const f in tempSubK.features) {
+              const geoFeature = tempSubK.features[f]
               let previewFeature = previewPath(geoFeature);
 
               if(previewFeature && previewFeature.indexOf('a') > 0) ;
@@ -148,10 +163,14 @@ function writeSVGFile(reformedJson) {
             }
           }
         }
+        var finalSVG = svg.node().outerHTML;
+        // Clean SVG for next round
+        svg.remove();
         var outputLocation = 'svgmap'+ requestedTileSpec.startTile.lat +'-'+requestedTileSpec.startTile.lon +'-'+requestedTileSpec.zoom +'.svg';
-        resolve(svg.node().outerHTML);
+        resolve(finalSVG);
   });
 }
+
 
 function enableDownloadLink (svg) {
   return new Promise( function(resolve, reject,) {

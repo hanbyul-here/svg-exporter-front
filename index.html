@@ -92,19 +92,22 @@
                         <option value="2">2</option>
                      </select>
                   </div>
+                  <div class="mb-2">
+                     <a  href="https://mapzen.com/documentation/vector-tiles/layers/">Mapzen Vector Tile layers <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                  </div>
+                  <div class="form-group"><input type="checkbox" id="buildings" name="buildings"><label for="buildings">buildings</label></div>
                   <div class="form-group"><input type="checkbox" id="boundaries" name="boundaries" checked=""><label for="boundaries">boundaries</label></div>
                   <div class="form-group"><input type="checkbox" id="earth" name="earth"><label for="earth">earth</label></div>
-                  <div class="form-group"><input type="checkbox" id="landuse" name="landuse"><label for="landuse">landuse</label></div>
-                  <div class="form-group"><input type="checkbox" id="places" name="places"><label for="places">places</label></div>
                   <div class="form-group"><input type="checkbox" id="roads" name="roads"><label for="roads">roads</label></div>
                   <div class="form-group"><input type="checkbox" id="transit" name="transit"><label for="transit">transit</label></div>
                   <div class="form-group"><input type="checkbox" id="water" name="water" checked=""><label for="water">water</label></div>
                   <input type="button" id="requestTiles" value ="request" name="coord-submit" class="btn btn-primary btn-mapzen">  </input>
                </form>
+
                <div id="status">
                   <div class="loading-spinner-01"></div> <span> baking svg </span>
                </div>
-               <a class="pb-4" id="downloadSVG">Download SVG</a>
+               <a class="pb-4" id="downloadSVG"> <i class="fa fa-hand-o-right" aria-hidden="true"></i> Download SVG <i class="fa fa-hand-o-left" aria-hidden="true"></i></a>
             </div>
          </div>
 
