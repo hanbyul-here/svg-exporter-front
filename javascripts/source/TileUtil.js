@@ -81,7 +81,7 @@ var setupJson = function (dKinds) {
 var getURL = function (x, y, zoom, key) {
   var xc = (x < 0)? 0: x;
   var yc = (y < 0)? 0: y;
-  return "https://tile.mapzen.com/mapzen/vector/v1/all/"+zoom+"/"+x+ "/" +y + ".json?api_key="+key;
+  return "https://tile.nextzen.org/tilezen/vector/v1/all/"+zoom+"/"+x+ "/" +y + ".json?api_key="+key;
 }
 
 module.exports = { getTileSpec, getTileNumberToFetch, setupJson, getURL };

@@ -3,9 +3,9 @@
       <meta charset="utf-8">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       <title>Let's make svg</title>
-      <link rel="stylesheet" href="https://mapzen.com/js/mapzen.css">
+      <link rel="stylesheet" href="./libs/mapzen.css">
       <link rel="stylesheet" href="https://cdn.rawgit.com/heyman/leaflet-areaselect/da890569/src/leaflet-areaselect.css">
-      <link rel="stylesheet" href="https://mapzen.com/common/styleguide/styles/styleguide.css">
+      <link rel="stylesheet" href="./libs/styleguide.css">
       <link rel="stylesheet" href="./stylesheets/style.css">
    </head>
    <body style="">
@@ -66,7 +66,7 @@
             </div>
             <div class="col-md-4">
                <form>
-                  <fieldset class="form-group"><label for="apikey">Vector Tiles API Key</label><input id="api-key" type="text" name="apikey" placeholder="vector-tiles-xxxx" class="form-control"></fieldset>
+                  <fieldset class="form-group"><label for="apikey"><a href="https://developers.nextzen.org/">Vector Tiles API Key <i class="fa fa-external-link" aria-hidden="true"></i></a></label><input id="api-key" type="text" name="apikey" placeholder="vector-tiles-xxxx" class="form-control"></fieldset>
                   <div id="api-key-warning" class="alert alert-warning api-warning"> You need Mapzen API Key to proceed.</div>
                   <fieldset class="form-group"><label for="startLat">startLat</label><input id="startLat" type="text" name="startLat" placeholder="start latitude" class="form-control"></fieldset>
                   <fieldset class="form-group"><label for="startLon">startLongitude</label><input id="startLon" type="text" name="startLon" placeholder="start longitude" class="form-control"></fieldset>
@@ -112,7 +112,7 @@
          </div>
 
       </div>
-      <script src="https://mapzen.com/js/mapzen.js"></script>
+      <script src="./libs/mapzen.min.js"></script>
       <script src="https://cdn.rawgit.com/heyman/leaflet-areaselect/da890569/src/leaflet-areaselect.js"></script>
       <script src="./javascripts/bundle.js"></script>
    </body>
