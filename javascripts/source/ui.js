@@ -1,10 +1,9 @@
 import { returnSVG } from './SVGMaker';
-
+const geocodekey = process.env.geocodeearthkey;
 // initialize map
-L.Mapzen.apiKey = 'search-waNZobx';
 var map = L.Mapzen.map('map',{
   tangramOptions: {
-    apiKey: 'K8CwGT3qTPyWaRKo8o6Nog'
+    apiKey: 'LPQj2bjVTWCUKRg3D9urLA' 
   },
   worldcopyjump: true,
   scrollZoom: false,
@@ -16,7 +15,7 @@ L.Mapzen.hash({
   map: map
 })
 
-L.Mapzen.geocoder('ge-d50cd6f6907b3fa3').addTo(map);
+L.Mapzen.geocoder(geocodekey).addTo(map);
 
 var areaSelect = L.areaSelect({width:200, height:250});
 
